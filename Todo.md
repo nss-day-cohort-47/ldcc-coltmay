@@ -1,6 +1,5 @@
 
 # Little Debbie's Collector Club
-## MVP
 - [ ] Display the full value of each property on the details page (not the id). 
 > *Hint: Use one of json-servers relationship features.*
 ***
