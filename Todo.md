@@ -2,7 +2,7 @@
 # Little Debbie's Collector Club
 ## MVP
 
-- [] Display the full value of each property on the details page (not the id). 
+- [ ] Display the full value of each property on the details page (not the id). 
 > *Hint: Use one of json-servers relationship features.*
 ***
 - [] Anyone visiting the site needs to be able to log in.
