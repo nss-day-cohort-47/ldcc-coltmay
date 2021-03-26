@@ -61,7 +61,6 @@ applicationElement.addEventListener("click", event => {
 // snack listeners
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
-
 	if (event.target.id.startsWith("detailscake")) {
 		const snackId = event.target.id.split("__")[1];
 		getSingleSnack(snackId)
