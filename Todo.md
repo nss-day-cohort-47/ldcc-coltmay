@@ -2,10 +2,10 @@
 # Little Debbie's Collector Club
 ## MVP
 
-- [ ] Display the full value of each property on the details page (not the id). 
+- [X] Display the full value of each property on the details page (not the id). 
 > *Hint: Use one of json-servers relationship features.*
 ***
-- [ ] Anyone visiting the site needs to be able to log in.
+- [X] Anyone visiting the site needs to be able to log in.
 ***
 - [ ] Only one admin.  Everyone else will not be an admin.  This needs to be reflected in the data.
 > Hint: you will need to add `isAdmin: false` to the register user object.* 
