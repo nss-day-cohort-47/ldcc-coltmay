@@ -1,20 +1,19 @@
 
 # Little Debbie's Collector Club
 ## MVP
-
-- [] Display the full value of each property on the details page (not the id). 
+- [ ] Display the full value of each property on the details page (not the id). 
 > *Hint: Use one of json-servers relationship features.*
 ***
-- [] Anyone visiting the site needs to be able to log in.
+- [ ] Anyone visiting the site needs to be able to log in.
 ***
-- [] Only one admin.  Everyone else will not be an admin.  This needs to be reflected in the data.
+- [ ] Only one admin.  Everyone else will not be an admin.  This needs to be reflected in the data.
 > Hint: you will need to add `isAdmin: false` to the register user object.* 
 ***
-- [] Make a list of toppings stored in the database; there should be some way to mix and match the toppings with the snacks.
+- [ ] Make a list of toppings stored in the database; there should be some way to mix and match the toppings with the snacks.
 
-    - [] Each `snack` should be able to have multiple `toppings`, (or no toppings at all).
+    - [ ] Each `snack` should be able to have multiple `toppings`, (or no toppings at all).
 
-    - [] Each `topping` should be able to go on multiple `snacks`, (or no snacks at all).
+    - [ ] Each `topping` should be able to go on multiple `snacks`, (or no snacks at all).
 
 > Hint: What type of relationship will this be?
 >
@@ -22,22 +21,22 @@
 >
 > **Be sure to share your ERD with the instruction team.**
 ***
-- [] The snack detail will need to display all the toppings for the one snack. Make this a comma separated list in a paragraph.
+- [ ] The snack detail will need to display all the toppings for the one snack. Make this a comma separated list in a paragraph.
 ***
-- [] Display snacks with particular toppings.
+- [ ] Display snacks with particular toppings.
 
-- [] The dropdown menu should read from the toppings list in the DB and be displayed in the navbar.
+- [ ] The dropdown menu should read from the toppings list in the DB and be displayed in the navbar.
 
-- [] The dropdown list of **toppings** should trigger a call to DB for **only** those snacks with toppings and then **display** them.
+- [ ] The dropdown list of **toppings** should trigger a call to DB for **only** those snacks with toppings and then **display** them.
     - Something like, show me all snacks with chocolate icing.  Only those snacks will be displayed.
 ***
-- [] Make it possible to add a **new snack type** to the `type` table in the DB.
+- [ ] Make it possible to add a **new snack type** to the `type` table in the DB.
 
-- [] Add **Oatmeal Creme Pie Cereal** to the list of snacks in the DB. 
+- [ ] Add **Oatmeal Creme Pie Cereal** to the list of snacks in the DB. 
 
-- [] Make an object that includes **properties** of the snack table in the ERD and **post** it to the DB with **Postman**.
+- [ ] Make an object that includes **properties** of the snack table in the ERD and **post** it to the DB with **Postman**.
 ***
-- [] Only display the `Add Type` if an **admin** is logged in.
+- [ ] Only display the `Add Type` if an **admin** is logged in.
 ***
 ### ERD
 **Before you begin any code**, use the ERD script and paste it into DBDiagram. Complete the relationships based on the MVP requirements. Share with the instruction team to get an updated `snacks.json` file.
