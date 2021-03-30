@@ -7,7 +7,7 @@ import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack, useSnackCollection, useToppingCollection
+	getSnacks, getSingleSnack, useSnackCollection, useToppingCollection, getToppings
 } from "./data/apiManager.js";
 
 const applicationElement = document.querySelector("#ldsnacks");
@@ -179,11 +179,15 @@ const filteredSnacks = (toppingName) => {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 const startLDSnacks = () => {
 	applicationElement.innerHTML = "";
-	showNavBar()
-	applicationElement.innerHTML += `<div id="mainContent"></div>`;
-	showSnackList();
-	showFooter();
-	ToppingDropDown();
+	//Get Toppings for the sake of dropdown.
+	getToppings()
+		.then(() => {
+			showNavBar()
+			applicationElement.innerHTML += `<div id="mainContent"></div>`;
+			showSnackList();
+			showFooter();
+			ToppingDropDown();
+		})
 }
 
 checkForUser();

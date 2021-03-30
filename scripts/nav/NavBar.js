@@ -1,4 +1,5 @@
-import { getLoggedInUser, getToppings } from "../data/apiManager.js"
+import { getLoggedInUser } from "../data/apiManager.js";
+import { ToppingDropDown } from "./ToppingDropDown.js";
 
 export const NavBar = () => {
 	//only show navItems and addTypeButton if user is logged in
@@ -15,9 +16,7 @@ export const NavBar = () => {
 		<li class="nav-item ms-1">
 			<select id="toppingSelector" class="form-select form-select btn-info" aria-label="Select A Topping">
 				<option selected>Select A Topping</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
+				${ToppingDropDown()}
 			</select>
 		</li>
 		<li class="nav-item ms-1">

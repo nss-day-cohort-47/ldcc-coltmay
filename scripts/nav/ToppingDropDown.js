@@ -1,13 +1,12 @@
-import { getToppings } from "../data/apiManager.js";
+import { useToppingCollection } from "../data/apiManager.js";
 
 export const ToppingDropDown = () => {
-    const DropDownElement = document.querySelector("#toppingSelector")
-    getToppings()
-        .then(toppingArray => {
-            let toppingDropDownHTML = "<option selected>Select A Topping</option>"
-            toppingArray.forEach(topping => {
-                toppingDropDownHTML += `<option id="selection__${topping.id}">${topping.name}</option>`
-            });
-            DropDownElement.innerHTML = toppingDropDownHTML;
-        })
+    // Remove querySelector, as function will be interpolated in Nav.
+    //// const DropDownElement = document.querySelector("#toppingSelector")
+    const toppingArray = useToppingCollection();
+    
+    const toppingDropDown = toppingArray.map((topping) => {
+        return `<option id="selection__${topping.id}">${topping.name}</option>`
+    })
+    return toppingDropDown
 }
