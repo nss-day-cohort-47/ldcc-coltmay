@@ -50,6 +50,7 @@ export const registerUser = (userObj) => {
 
 let snackCollection = [];
 let toppingCollection = [];
+let allToppingCollection = [];
 
 export const useSnackCollection = () => {
 	//Best practice: we don't want to alter the original state, so
@@ -60,7 +61,7 @@ export const useSnackCollection = () => {
 }
 
 export const getSnacks = () => {
-	return fetch(`${apiURL}/snacks`)
+	return fetch(`${apiURL}/snacks/?_expand=type&_expand=inFlavor&_expand=season&_expand=shape&_embed=snackToppings`)
 		.then(response => response.json())
 		.then(parsedResponse => {
 			snackCollection = parsedResponse
@@ -93,4 +94,13 @@ export const getSingleSnackToppings = (snackId) => {
 export const getToppings = () => {
 	return fetch(`${apiURL}/toppings`)
 		.then(response => response.json())
+		.then(parsedResponse => {
+			allToppingCollection = parsedResponse;
+			return parsedResponse;
+		})
+
+}
+
+export const useToppingCollection = () => {
+	return [...allToppingCollection];
 }

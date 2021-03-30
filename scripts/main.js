@@ -9,7 +9,7 @@ import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack
+	getSnacks, getSingleSnack, useSnackCollection, useToppingCollection
 } from "./data/apiManager.js";
 
 const applicationElement = document.querySelector("#ldsnacks");
@@ -77,6 +77,13 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("change", event => {
+	event.preventDefault();
+	if (event.target.id === "toppingSelector") {
+		filteredSnacks(event.target.value);
+	}
+})
+
 const showDetails = (snackObj) => {
 	const listElement = document.querySelector("#mainContent");
 	listElement.innerHTML = SnackDetails(snackObj);
@@ -111,6 +118,12 @@ const showSnackList = () => {
 	})
 }
 
+const showFilteredSnackList = (filteredArray) => {
+		const listElement = document.querySelector("#mainContent")
+		listElement.innerHTML = SnackList(filteredArray);
+}
+
+
 const showFooter = () => {
 	applicationElement.innerHTML += Footer();
 }
@@ -122,6 +135,28 @@ const startLDSnacks = () => {
 	showSnackList();
 	showFooter();
 	ToppingDropDown();
+}
+
+const filteredSnacks = (toppingName) => {
+
+	let allSnacksArray = useSnackCollection();
+	let allToppingsArray = useToppingCollection();
+	let toppingId = "";
+	let filteredSnackArray = [];
+
+	allToppingsArray.forEach(toppingObj => {
+		if (toppingObj.name === toppingName) {
+			toppingId = toppingObj.id
+		}
+	});
+
+	allSnacksArray.forEach(snack => snack.snackToppings.forEach(topping => {
+		if (toppingId === topping.toppingId){
+			filteredSnackArray.push(snack);
+		}
+	}))
+	console.log(filteredSnackArray)
+	showFilteredSnackList(filteredSnackArray)
 }
 
 checkForUser();
