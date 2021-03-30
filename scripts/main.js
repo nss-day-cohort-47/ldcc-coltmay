@@ -11,8 +11,6 @@ import {
 	getSnacks, getSingleSnack
 } from "./data/apiManager.js";
 
-
-
 const applicationElement = document.querySelector("#ldsnacks");
 
 //login/register listeners
@@ -40,7 +38,7 @@ applicationElement.addEventListener("click", event => {
 		const userObject = {
 			name: document.querySelector("input[name='registerName']").value,
 			email: document.querySelector("input[name='registerEmail']").value,
-			admin : false
+			admin: false
 		}
 		registerUser(userObject)
 			.then(dbUserObj => {
@@ -87,7 +85,7 @@ const showDetails = (snackObj) => {
 const checkForUser = () => {
 	if (sessionStorage.getItem("user")) {
 		setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
-		startLDSnacks();
+		startLDSnacks()
 	} else {
 		applicationElement.innerHTML = "";
 		//show login/register
@@ -118,7 +116,7 @@ const showFooter = () => {
 
 const startLDSnacks = () => {
 	applicationElement.innerHTML = "";
-	showNavBar();
+	showNavBar()
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
