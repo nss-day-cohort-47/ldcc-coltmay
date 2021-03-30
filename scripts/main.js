@@ -3,15 +3,14 @@ console.log('yum, yum, yum');
 import { LoginForm } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { NavBar } from "./nav/NavBar.js";
+import { ToppingDropDown } from "./nav/ToppingDropDown.js";
 import { SnackList } from "./snacks/SnackList.js";
 import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack
+	getSnacks, getSingleSnack, useSnackCollection, useToppingCollection
 } from "./data/apiManager.js";
-
-
 
 const applicationElement = document.querySelector("#ldsnacks");
 
@@ -40,7 +39,7 @@ applicationElement.addEventListener("click", event => {
 		const userObject = {
 			name: document.querySelector("input[name='registerName']").value,
 			email: document.querySelector("input[name='registerEmail']").value,
-			admin : false
+			admin: false
 		}
 		registerUser(userObject)
 			.then(dbUserObj => {
@@ -78,6 +77,13 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("change", event => {
+	event.preventDefault();
+	if (event.target.id === "toppingSelector") {
+		filteredSnacks(event.target.value);
+	}
+})
+
 const showDetails = (snackObj) => {
 	const listElement = document.querySelector("#mainContent");
 	listElement.innerHTML = SnackDetails(snackObj);
@@ -87,7 +93,7 @@ const showDetails = (snackObj) => {
 const checkForUser = () => {
 	if (sessionStorage.getItem("user")) {
 		setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
-		startLDSnacks();
+		startLDSnacks()
 	} else {
 		applicationElement.innerHTML = "";
 		//show login/register
@@ -112,17 +118,45 @@ const showSnackList = () => {
 	})
 }
 
+const showFilteredSnackList = (filteredArray) => {
+		const listElement = document.querySelector("#mainContent")
+		listElement.innerHTML = SnackList(filteredArray);
+}
+
+
 const showFooter = () => {
 	applicationElement.innerHTML += Footer();
 }
 
 const startLDSnacks = () => {
 	applicationElement.innerHTML = "";
-	showNavBar();
+	showNavBar()
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
+	ToppingDropDown();
+}
 
+const filteredSnacks = (toppingName) => {
+
+	let allSnacksArray = useSnackCollection();
+	let allToppingsArray = useToppingCollection();
+	let toppingId = "";
+	let filteredSnackArray = [];
+
+	allToppingsArray.forEach(toppingObj => {
+		if (toppingObj.name === toppingName) {
+			toppingId = toppingObj.id
+		}
+	});
+
+	allSnacksArray.forEach(snack => snack.snackToppings.forEach(topping => {
+		if (toppingId === topping.toppingId){
+			filteredSnackArray.push(snack);
+		}
+	}))
+	console.log(filteredSnackArray)
+	showFilteredSnackList(filteredSnackArray)
 }
 
 checkForUser();

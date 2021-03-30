@@ -50,17 +50,18 @@ export const registerUser = (userObj) => {
 
 let snackCollection = [];
 let toppingCollection = [];
+let allToppingCollection = [];
 
 export const useSnackCollection = () => {
-  //Best practice: we don't want to alter the original state, so
-  //make a copy of it and then return it
-  //the spread operator makes quick work
+	//Best practice: we don't want to alter the original state, so
+	//make a copy of it and then return it
+	//the spread operator makes quick work
 	const snackCollectionCopy = [...snackCollection]
 	return snackCollectionCopy;
 }
 
 export const getSnacks = () => {
-	return fetch(`${apiURL}/snacks`)
+	return fetch(`${apiURL}/snacks/?_expand=type&_expand=inFlavor&_expand=season&_expand=shape&_embed=snackToppings`)
 		.then(response => response.json())
 		.then(parsedResponse => {
 			snackCollection = parsedResponse
@@ -71,26 +72,35 @@ export const getSnacks = () => {
 //* A function that will fetch a single snack from the snack database by ID, with expanded properties.
 export const getSingleSnack = (snackId) => {
 	return fetch(`${apiURL}/snacks/${snackId}/?_expand=type&_expand=inFlavor&_expand=season&_expand=shape&_embed=snackToppings`)
-	.then(response => response.json())
-	.then(parsedResponse => {
-		return getSingleSnackToppings(snackId)
-			.then((toppings) => {
-				parsedResponse.toppings = toppings;
-				return parsedResponse;
-			})
-	})
+		.then(response => response.json())
+		.then(parsedResponse => {
+			return getSingleSnackToppings(snackId)
+				.then((toppings) => {
+					parsedResponse.toppings = toppings;
+					return parsedResponse;
+				})
+		})
 }
 
 export const getSingleSnackToppings = (snackId) => {
 	return fetch(`${apiURL}/snackToppings?snackId=${snackId}&_expand=topping`)
-	.then(response => response.json())
-	.then(parsedResponse => {
-		toppingCollection = parsedResponse
-		return parsedResponse;
-	})
+		.then(response => response.json())
+		.then(parsedResponse => {
+			toppingCollection = parsedResponse
+			return parsedResponse;
+		})
 }
 
 export const getToppings = () => {
 	return fetch(`${apiURL}/toppings`)
-	.then(response => response.json())
+		.then(response => response.json())
+		.then(parsedResponse => {
+			allToppingCollection = parsedResponse;
+			return parsedResponse;
+		})
+
+}
+
+export const useToppingCollection = () => {
+	return [...allToppingCollection];
 }
