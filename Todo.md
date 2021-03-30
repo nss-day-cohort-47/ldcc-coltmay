@@ -1,10 +1,3 @@
-- [ ] Display snacks with particular toppings.
-
-- [ ] The dropdown menu should read from the toppings list in the DB and be displayed in the navbar.
-
-- [ ] The dropdown list of **toppings** should trigger a call to DB for **only** those snacks with toppings and then **display** them.
-    - Something like, show me all snacks with chocolate icing.  Only those snacks will be displayed.
-***
 - [ ] Make it possible to add a **new snack type** to the `type` table in the DB.
 
 - [ ] Add **Oatmeal Creme Pie Cereal** to the list of snacks in the DB. 
