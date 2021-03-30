@@ -93,12 +93,4 @@ export const getSingleSnackToppings = (snackId) => {
 export const getToppings = () => {
 	return fetch(`${apiURL}/toppings`)
 		.then(response => response.json())
-		.then(toppingsArray => {
-			const dropdownElement = document.querySelector("form-select form-select btn-info");
-			let dropDownHTML = "<option selected>Select A Topping</option>";
-			toppingsArray.forEach(topping => {
-				dropDownHTML += `<option id="option__${topping.id}">${topping.name}</option>`
-			});
-			console.log(dropDownHTML)
-		})
 }
